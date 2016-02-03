@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>{% block title %} Filmotheque{%endblock %}</title>
+             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+        <div id="page">
+            <div id="header">
+                <ul id="menu">
+                    <li><a href="{{ path('filmotheque_accueil')}}">Accueil</a></li>
+                    <li><a href="{{ path('acteur_liste' )}}">Acteurs</a></li>
+                    <li><a href="{{ path('film_liste')         }}">Films  </a></li>
+                </ul>
+            </div>
+        
+        <div id="content">
+            <h1>{{ block('title') }}</h1>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div>
+            <p>Tous droits réservés @ 2011, Sky's Limit</p>
+        </div>
+    </div>
+    </body>
+</html>
