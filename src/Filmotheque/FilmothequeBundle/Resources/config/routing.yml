@@ -27,3 +27,29 @@ acteur_editer:
     defaults: { _controller: FilmothequeBundle:Acteur:editer }
     requirements:
         id : \d+
+
+film_liste:
+    pattern:  /filmotheque/lister
+    defaults: { _controller: FilmothequeBundle:Acteur:lister }
+    
+film_ajouter:
+    pattern:  /filmotheque/ajouter
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+
+film_modifier:
+    pattern:  /filmotheque/modifier/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+    requirements:
+        id : \d+
+
+film_supprimer:
+    pattern:  /filmotheque/supprimer/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:supprimer }
+    requirements:
+        id : \d+
+    
+film_editer:
+    pattern:  /filmotheque/editer/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+    requirements:
+        id : \d+
