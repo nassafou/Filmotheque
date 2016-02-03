@@ -1,0 +1,7 @@
+parameters:
+#    filmotheque.example.class: Filmotheque\FilmothequeBundle\Example
+
+services:
+#    filmotheque.example:
+#        class: %filmotheque.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
