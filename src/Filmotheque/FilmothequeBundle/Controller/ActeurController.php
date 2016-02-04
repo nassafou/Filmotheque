@@ -168,7 +168,7 @@ class ActeurController extends Controller
     public function topAction($max = 5)
     {
         $em = $this->getDoctrine()->getManager();
-       $qb = $em->createQueryBuilder('a')
+       $qb  = $em->createQueryBuilder('a')
                   ->select('a')
                   ->from('FilmothequeBundle:Acteur', 'a')
                   ->orderBy('a.dateNaissance', 'DESC')

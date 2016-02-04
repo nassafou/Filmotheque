@@ -1,20 +1,18 @@
 
 <table>
-
 <tr>
     <td>Nom</td>
     <td>Prenom</td>
     <td>Date de naissance</td>
     <td>Sexe</td>
 </tr>
-
 {% for acteur in acteurs %}
     <tr>
-   <td> {{ acteur.nom }}</td>
+    <td> {{ acteur.nom }}</td>
     <td>{{ acteur.prenom }}</td>
-    <td>{{ acteur.dateNaissance | date('d/m/Y') }}    </td>
+    <td>{{ acteur.dateNaissance | date('d/m/Y') }}</td>
      <td>{{ acteur.sexe }}</td>
-    <td><a href="{{ path('acteur_editer', {'id': acteur.id }) }}">Modifier</a></td>
+    <td><a href="{{ path('acteur_editer', {'id': acteur.id }) }}">      Modifier</a></td>
     <td> <a href="{{ path('acteur_supprimer', {'id' : acteur.id }) }}"> Supprimer</a></td>
     </tr>
 {%  endfor %}
