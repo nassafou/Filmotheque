@@ -1,0 +1,35 @@
+acteur_accueil:
+    pattern:  /filmotheque/
+    defaults: { _controller: FilmothequeBundle:Default:index }
+    
+acteur_liste:
+    pattern:  /lister
+    defaults: { _controller: FilmothequeBundle:Acteur:lister }
+    
+acteur_ajouter:
+    pattern:  /ajouter
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+
+acteur_modifier:
+    pattern:  /modifier/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+    requirements:
+        id : \d+
+
+acteur_supprimer:
+    pattern:  /supprimer/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:supprimer }
+    requirements:
+        id : \d+
+    
+acteur_editer:
+    pattern:  /editer/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+    requirements:
+        id : \d+
+
+acteur_editer:
+    pattern:  /editer/{id}
+    defaults: { _controller: FilmothequeBundle:Acteur:editer }
+    requirements:
+        id : \d+
