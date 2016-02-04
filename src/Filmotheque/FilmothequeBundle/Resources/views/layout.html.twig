@@ -2,12 +2,14 @@
     <head>
         <title>{% block title %} Filmotheque{%endblock %}</title>
              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+             <link  rel="stylesheet" href="{{asset('bundles/filmotheque/css/main.css') }}" type="text/css"/>
     </head>
     <body>
         <div id="page">
             <div id="header">
+                <img src="{{ asset('bundles/filmotheque/images/logo.png') }}" alt="Filmotheque" width="128" height="128" />
                 <ul id="menu">
-                    <li><a href="{{ path('filmotheque_accueil')}}">Accueil</a></li>
+                    <li><a href="{{ path('acteur_accueil')}}">Accueil</a></li>
                     <li><a href="{{ path('acteur_liste' )}}">Acteurs</a></li>
                     <li><a href="{{ path('film_liste')         }}">Films  </a></li>
                 </ul>

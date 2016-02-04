@@ -63,7 +63,6 @@ class ActeurController extends Controller
         //création de la requette
         $request = $this->get('request');
         // vérification de la methode
-        
         if($request     ->getMethod() == 'POST')
         {
             // lié le formulaire a la requete
@@ -76,13 +75,11 @@ class ActeurController extends Controller
                 
                 return redirect($this->generateUrl('FilmothequeBundle:Acteur:index.html.twig'));
             }
-            
         }
         //pour modifier on prend l'id de l'acteur et on appel un formulaire aussi avec create view
         return $this  ->render('FilmothequeBundle:Acteur:ajouter.html.twig', array(
                                                                                     'id' => $id,
                                                                                    'form' => $form->createView() ));
-
     }
     
     /*
@@ -99,12 +96,12 @@ class ActeurController extends Controller
         //entity
         $em     = $this->getDoctrine()->getManager();
         //recupération de l'acteur
-        $acteur = $this->getRepository('FilmothequeBundle:Acteur')->find($id);
+        $acteur = $em->getRepository('FilmothequeBundle:Acteur')->find($id);
         //suppression 
         $em     ->remove($acteur);
         $em     ->flush();
 
-        return redirect($this->generateUrl('acteur_lister'));
+        return  $this->redirect($this->generateUrl('acteur_liste'));
     }
     
     public function editerAction($id = null)
@@ -122,13 +119,10 @@ class ActeurController extends Controller
             $request = $this->get('request');
             //vérifier
             if($request->getMethod() == 'POST')
-            {
-                $form->bind('request');
+            {    $form->bind('request');
                 if($form->isValid())
-                {
-                    $em->persist($acteur);
+                {   $em->persist($acteur);
                     $em->flush();
-                    
                     return $this->redirect(generateUrl('acteur_list'));
                 }
             }
@@ -138,7 +132,6 @@ class ActeurController extends Controller
           }else
           {
             //si le id est valide donc nous sommes dans le cas de la modification
-            
             $em      = $this-> getDoctrine()->getManager();
             //il faut recuperer l'id de l'utisateur
             $acteur  = $em->getRepository('FilmothequeBundle:Acteur')->find($id);
@@ -149,12 +142,11 @@ class ActeurController extends Controller
             // Condition de validation vérifier si la requete est get ou POST
             if($request->getMethod() == 'POST')
             {
-                $form->bind($request);
+                    $form->bind($request);
                 // si le formulaire est valide
-                if($form->isValid())
+                if( $form->isValid())
                 {
                     //C'est une donnée a enrégistré
-                    
                     $em->persist($acteur);
                     $em->flush();
                     
@@ -165,10 +157,34 @@ class ActeurController extends Controller
             // si c'est une requete get on fait le modification
             return $this->render('FilmothequeBundle:Acteur:ajouter.html.twig', array('id' => $id,
                                                                                      'form' => $form->createView()));
-            
-            
-            
           }
     }
+    
+       /*Fonction permettant de recupérer les acteurs les plus jeunes
+        *
+        */
+        
+    
+    public function topAction($max = 5)
+    {
+        $em = $this->getDoctrine()->getManager();
+       $qb  = $em->createQueryBuilder('a')
+                  ->select('a')
+                  ->from('FilmothequeBundle:Acteur', 'a')
+                  ->orderBy('a.dateNaissance', 'DESC')
+                  ->setMaxResults($max);
+        
+                 
+             $query   =  $qb->getQuery();
+            $acteurs  = $query->getResult();
+            
+            
+            return $this->render('FilmothequeBundle:Acteur:lister.html.twig', array('acteurs' => $acteurs));
+        
+    }
+    
+    
+    
+    
     
 }

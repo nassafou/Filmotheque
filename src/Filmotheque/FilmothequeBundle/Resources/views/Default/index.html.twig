@@ -1,1 +1,9 @@
-{{ message }}!
+{% extends 'FilmothequeBundle::layout.html.twig' %}
+
+
+
+    {% block content %}
+   {% render(controller("FilmothequeBundle:Acteur:top")) %}
+    
+    {#{% include "FilmothequeBundle:Acteur:lister.html.twig" %}#}
+{% endblock %}
